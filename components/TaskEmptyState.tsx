@@ -1,23 +1,15 @@
-import { Check } from "lucide-react";
+import React from "react";
 
-type TaskEmptyStateProps = {
-  hasTasks: boolean;
-};
-
-export const TaskEmptyState = ({ hasTasks }: TaskEmptyStateProps) => {
-  const description = hasTasks ? "Try another filter to see your tasks." : "Add your first task above";
-
-  const heading = hasTasks ? "No tasks here" : "Your list starts here";
-
+export const TaskEmpty = ({ hasTasks }: { hasTasks: boolean }) => {
   return (
-    <div className="flex min-h-60 flex-col items-center justify-center px-6 py-10 text-center">
-      <span className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#f0f6f2] text-[#6c9b82]">
-        <Check strokeWidth={1.8} className="h-6 w-6" />
-      </span>
-
-      <h2 className="text-base font-semibold text-[#304C3E]">{heading}</h2>
-
-      <p className="mt-2 text-sm text-[#7A8881]">{description}</p>
+    <div className="w-full h-[224px] flex items-center justify-center flex-col">
+      <div className="w-[56px] h-[56px] rounded-full bg-[#F0F6F2] flex items-center justify-center">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6L9 17L4 12" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" stroke="#6C9B82" />
+        </svg>
+      </div>
+      <div className="m-2 text-[#304C3E] text-[16px] font-semibold">{hasTasks ? "No tasks here" : "Your list starts here"}</div>
+      <div className="m-2 text-[#7A8881] text-[14px] font-normal">{hasTasks ? "Try another filter to see your tasks." : "Add your first task above."}</div>
     </div>
   );
 };

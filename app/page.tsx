@@ -7,7 +7,12 @@ const HomePage = () => {
   const [filter, setFilter] = useState<FilterType>("All");
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const visibleTasks = tasks.filter((task) => (filter === "All" || filter === "Active" ? !task.completed : task.completed));
+  // const visibleTasks = tasks.filter((task) => (filter === "All" || filter === "Active" ? !task.completed : task.completed));
+  const visibleTasks = tasks.filter((task) => {
+    if (filter === "Active") return !task.completed;
+    if (filter === "Completed") return task.completed;
+    return true;
+  });
 
   const toggleTask = (id: string) => {
     setTasks((current) => current.map((item) => (item.id === id ? { ...item, completed: !item.completed } : item)));
